@@ -1,3 +1,5 @@
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire client integrations.
@@ -10,6 +12,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 builder.Services.AddProblemDetails();
 builder.Services.AddCors();
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(options =>
 {
