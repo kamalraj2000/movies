@@ -5,8 +5,8 @@ const config: ConfigFile = {
   apiFile: './src/store/api/empty-api.ts',
   apiImport: 'emptySplitApi',
   outputFiles: {
-    './src/store/api/generated/weather.ts': {
-      filterEndpoints: [/^weather/]
+    './src/store/api/generated/todos.ts': {
+      filterEndpoints: [/Todo/]
     },
   },
   exportName: 'moviesApi',

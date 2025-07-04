@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-api": "npx @rtk-query/codegen-openapi openapi-config.ts && node prepend-eslint-disable.js"
+    "generate-api": "npx @rtk-query/codegen-openapi openapi-config.ts && node prepend-eslint-disable.mjs"
   },
   "dependencies": {
+    "@radix-ui/react-checkbox": "^1.3.2",
+    "@radix-ui/react-slot": "^1.2.3",
     "@reduxjs/toolkit": "^2.8.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
