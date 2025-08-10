@@ -29,33 +29,42 @@ const injectedRtkApi = api.injectEndpoints({
   overrideExisting: false,
 });
 export { injectedRtkApi as moviesApi };
-export type GetTodosApiResponse = /** status 200  */ TodoItem[];
+export type GetTodosApiResponse =
+  /** status 200 Successful Response */ TodoItem[];
 export type GetTodosApiArg = void;
-export type CreateTodoApiResponse = /** status 200  */ number;
+export type CreateTodoApiResponse =
+  /** status 200 Successful Response */ number;
 export type CreateTodoApiArg = {
   createTodoCommand: CreateTodoCommand;
 };
-export type UpdateTodoApiResponse = unknown;
+export type UpdateTodoApiResponse = /** status 200 Successful Response */ any;
 export type UpdateTodoApiArg = {
   id: number;
   updateTodoCommand: UpdateTodoCommand;
 };
-export type DeleteTodoApiResponse = unknown;
+export type DeleteTodoApiResponse = /** status 200 Successful Response */ any;
 export type DeleteTodoApiArg = {
   id: number;
 };
 export type TodoItem = {
-  id?: number;
+  id: number;
   title?: string | null;
   isComplete?: boolean;
 };
+export type ValidationError = {
+  loc: (string | number)[];
+  msg: string;
+  type: string;
+};
+export type HttpValidationError = {
+  detail?: ValidationError[];
+};
 export type CreateTodoCommand = {
-  title?: string;
+  title: string;
 };
 export type UpdateTodoCommand = {
-  id?: number;
-  title?: string;
-  isComplete?: boolean;
+  title: string;
+  isComplete: boolean;
 };
 export const {
   useGetTodosQuery,
