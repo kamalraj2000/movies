@@ -1,6 +1,15 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
+var sqlPassword = builder.AddParameter("sql-password", secret: true);
+
+var sqlServer = builder
+        .AddSqlServer("todo-sqlserver", password: sqlPassword, port: 9000)
+        .WithLifetime(ContainerLifetime.Persistent)
+        .AddDatabase("tododb");
+
 var apiService = builder.AddProject<Projects.ApiService>("apiservice")
+    .WithReference(sqlServer)
+    .WaitFor(sqlServer)
     .WithHttpHealthCheck("/health");
 
 // The Python API is experimental and subject to change
