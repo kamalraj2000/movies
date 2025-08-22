@@ -1,5 +1,5 @@
 using System.Reflection;
-using Microsoft.EntityFrameworkCore;
+using Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +18,9 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
 });
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddDbContext<ApiService.Data.TodoDbContext>(options =>
-{
-    options.UseInMemoryDatabase("TodoDb");
-});
+
+// Add database context
+builder.AddSqlServerDbContext<TodoDbContext>("tododb");
 
 builder.Services.AddOpenApiDocument(options =>
 {

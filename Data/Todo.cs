@@ -1,5 +1,5 @@
 
-namespace ApiService.Todo.Models;
+namespace Data;
 
 public class Todo
 {

@@ -9,7 +9,7 @@ public class DeleteTodoCommandHandler(TodoDbContext context) : IRequestHandler<D
 {
     public async Task<Unit> Handle(DeleteTodoCommand request, CancellationToken cancellationToken)
     {
-        var todo = await context.Todos.FindAsync(request.Id);
+        var todo = await context.Todos.FindAsync([request.Id], cancellationToken: cancellationToken);
 
         if (todo == null)
         {

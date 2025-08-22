@@ -55,7 +55,7 @@ export default function TodosPage() {
                             <TableCell>
                                 <Checkbox
                                     checked={todo.isComplete!}
-                                    onCheckedChange={() => updateTodo({ id: todo.id!, updateTodoCommand: { id: todo.id!, title: todo.title ?? "", isComplete: !todo.isComplete } })}
+                                    onCheckedChange={() => updateTodo({ id: todo.id!, updateTodoCommand: { title: todo.title ?? "", isComplete: !todo.isComplete } })}
                                 />
                             </TableCell>
                             <TableCell>{todo.title}</TableCell>

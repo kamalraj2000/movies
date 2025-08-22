@@ -12,12 +12,14 @@
 
   <ItemGroup>
     <ProjectReference Include="../ApiService/ApiService.csproj" />
+    <ProjectReference Include="../MigrationService/MigrationService.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.1" />
     <PackageReference Include="Aspire.Hosting.NodeJs" Version="9.3.1" />
     <PackageReference Include="Aspire.Hosting.Python" Version="9.3.1" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="9.3.1" />
   </ItemGroup>
 
   <!-- Restore pnpm packages for web projects during build -->

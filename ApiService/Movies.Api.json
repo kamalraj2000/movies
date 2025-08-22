@@ -84,11 +84,11 @@
           }
         ],
         "requestBody": {
-          "x-name": "command",
+          "x-name": "dto",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTodoCommand"
+                "$ref": "#/components/schemas/UpdateTodoCommandDto"
               }
             }
           },
@@ -170,14 +170,10 @@
           }
         }
       },
-      "UpdateTodoCommand": {
+      "UpdateTodoCommandDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
           "title": {
             "type": "string"
           },
