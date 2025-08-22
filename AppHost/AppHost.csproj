@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../ApiService/ApiService.csproj" />
+    <ProjectReference Include="../MigrationService/MigrationService.csproj" />
   </ItemGroup>
 
   <ItemGroup>
