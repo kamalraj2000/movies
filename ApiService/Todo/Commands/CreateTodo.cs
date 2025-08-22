@@ -2,7 +2,6 @@ namespace ApiService.Todo.Commands;
 
 using MediatR;
 using Data;
-using Models;
 
 public record CreateTodoCommand(string Title) : IRequest<int>;
 

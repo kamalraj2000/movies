@@ -3,13 +3,14 @@ namespace ApiService.Todo.Commands;
 using MediatR;
 using Data;
 
-public record UpdateTodoCommand(int Id, string Title, bool IsComplete) : IRequest<Unit>;
+public record UpdateTodoCommandDto(string Title, bool IsComplete);
+public record UpdateTodoCommand(int Id, UpdateTodoCommandDto Dto) : IRequest<Unit>;
 
 public class UpdateTodoCommandHandler(TodoDbContext context) : IRequestHandler<UpdateTodoCommand, Unit>
 {
     public async Task<Unit> Handle(UpdateTodoCommand request, CancellationToken cancellationToken)
     {
-        var todo = await context.Todos.FindAsync(request.Id);
+        var todo = await context.Todos.FindAsync([request.Id], cancellationToken: cancellationToken);
 
         if (todo == null)
         {
@@ -17,8 +18,8 @@ public class UpdateTodoCommandHandler(TodoDbContext context) : IRequestHandler<U
             return Unit.Value;
         }
 
-        todo.Title = request.Title;
-        todo.IsComplete = request.IsComplete;
+        todo.Title = request.Dto.Title;
+        todo.IsComplete = request.Dto.IsComplete;
 
         await context.SaveChangesAsync(cancellationToken);
 

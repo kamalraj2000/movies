@@ -23,15 +23,9 @@ public class TodosController(IMediator mediator) : ControllerBase
     }
 
     [HttpPut("{id}", Name = nameof(UpdateTodo))]
-    public async Task<IActionResult> UpdateTodo(int id, UpdateTodoCommand command)
+    public async Task<IActionResult> UpdateTodo(int id, UpdateTodoCommandDto dto)
     {
-        if (id != command.Id)
-        {
-            return BadRequest();
-        }
-
-        await mediator.Send(command);
-
+        await mediator.Send(new UpdateTodoCommand(id, dto));
         return NoContent();
     }
 
@@ -39,7 +33,6 @@ public class TodosController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> DeleteTodo(int id)
     {
         await mediator.Send(new DeleteTodoCommand(id));
-
         return NoContent();
     }
 }
