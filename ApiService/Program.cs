@@ -25,7 +25,7 @@ builder.AddSqlServerDbContext<TodoDbContext>("tododb");
 builder.Services.AddOpenApiDocument(options =>
 {
     options.DocumentName = "v1";
-    options.Title = "Movies API";
+    options.Title = "Todos API";
     options.Version = "v1";
     options.UseHttpAttributeNameAsOperationId = true;
     

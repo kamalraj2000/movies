@@ -16,7 +16,7 @@ const injectedRtkApi = api.injectEndpoints({
       query: (queryArg) => ({
         url: `/api/Todos/${queryArg.id}`,
         method: "PUT",
-        body: queryArg.updateTodoCommand,
+        body: queryArg.updateTodoCommandDto,
       }),
     }),
     deleteTodo: build.mutation<DeleteTodoApiResponse, DeleteTodoApiArg>({
@@ -28,43 +28,33 @@ const injectedRtkApi = api.injectEndpoints({
   }),
   overrideExisting: false,
 });
-export { injectedRtkApi as moviesApi };
-export type GetTodosApiResponse =
-  /** status 200 Successful Response */ TodoItem[];
+export { injectedRtkApi as todosApi };
+export type GetTodosApiResponse = /** status 200  */ TodoItem[];
 export type GetTodosApiArg = void;
-export type CreateTodoApiResponse =
-  /** status 200 Successful Response */ number;
+export type CreateTodoApiResponse = /** status 200  */ number;
 export type CreateTodoApiArg = {
   createTodoCommand: CreateTodoCommand;
 };
-export type UpdateTodoApiResponse = /** status 200 Successful Response */ any;
+export type UpdateTodoApiResponse = unknown;
 export type UpdateTodoApiArg = {
   id: number;
-  updateTodoCommand: UpdateTodoCommand;
+  updateTodoCommandDto: UpdateTodoCommandDto;
 };
-export type DeleteTodoApiResponse = /** status 200 Successful Response */ any;
+export type DeleteTodoApiResponse = unknown;
 export type DeleteTodoApiArg = {
   id: number;
 };
 export type TodoItem = {
-  id: number;
+  id?: number;
   title?: string | null;
   isComplete?: boolean;
 };
-export type ValidationError = {
-  loc: (string | number)[];
-  msg: string;
-  type: string;
-};
-export type HttpValidationError = {
-  detail?: ValidationError[];
-};
 export type CreateTodoCommand = {
-  title: string;
+  title?: string;
 };
-export type UpdateTodoCommand = {
-  title: string;
-  isComplete: boolean;
+export type UpdateTodoCommandDto = {
+  title?: string;
+  isComplete?: boolean;
 };
 export const {
   useGetTodosQuery,
