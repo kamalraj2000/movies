@@ -1,6 +1,6 @@
-import { moviesApi } from "../generated/todos";
+import { todosApi } from "../generated/todos";
 
-export const todosApi = moviesApi.enhanceEndpoints({
+export const enhancedTodosApi = todosApi.enhanceEndpoints({
     addTagTypes: [
         'TODO', 
     ],
@@ -25,4 +25,4 @@ export const {
   useCreateTodoMutation,
   useUpdateTodoMutation,
   useDeleteTodoMutation,
-} = todosApi;
+} = enhancedTodosApi;

@@ -1,7 +1,7 @@
 import type { ConfigFile } from '@rtk-query/codegen-openapi'
 
 const config: ConfigFile = {
-  schemaFile: '../PythonApi/openapi.json',
+  schemaFile: '../ApiService/Todos.Api.json',
   apiFile: './src/store/api/empty-api.ts',
   apiImport: 'emptySplitApi',
   outputFiles: {
@@ -9,7 +9,7 @@ const config: ConfigFile = {
       filterEndpoints: [/Todo/]
     },
   },
-  exportName: 'moviesApi',
+  exportName: 'todosApi',
   hooks: true,
 }
 
