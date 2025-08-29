@@ -58,6 +58,7 @@ export type ClassifyTodoApiArg = {
 export type TodoItem = {
   id?: number;
   title?: string | null;
+  category?: string | null;
   isComplete?: boolean;
 };
 export type CreateTodoCommand = {

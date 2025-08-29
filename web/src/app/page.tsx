@@ -46,6 +46,7 @@ export default function TodosPage() {
                     <TableRow>
                         <TableHead className="w-[50px]">Complete</TableHead>
                         <TableHead>Title</TableHead>
+                        <TableHead className="w-[150px]">Category</TableHead>
                         <TableHead className="w-[100px]">Actions</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -59,6 +60,17 @@ export default function TodosPage() {
                                 />
                             </TableCell>
                             <TableCell>{todo.title}</TableCell>
+                            <TableCell>
+                                {todo.category && (
+                                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                        todo.category === 'Work' ? 'bg-blue-100 text-blue-800' :
+                                        todo.category === 'Home' ? 'bg-green-100 text-green-800' :
+                                        'bg-gray-100 text-gray-800'
+                                    }`}>
+                                        {todo.category}
+                                    </span>
+                                )}
+                            </TableCell>
                             <TableCell>
                                 <Button variant="destructive" onClick={() => deleteTodo({ id: todo.id! })}>Delete</Button>
                             </TableCell>
