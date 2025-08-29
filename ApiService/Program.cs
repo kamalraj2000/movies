@@ -37,7 +37,7 @@ builder.Services.AddOpenApiDocument(options =>
 });
 
 builder.Services.AddHttpClient<PythonClient>(
-    static client => client.BaseAddress = new("http+https://pythonapi"));
+    static client => client.BaseAddress = new("http://pythonapi"));
 
 var app = builder.Build();
 
