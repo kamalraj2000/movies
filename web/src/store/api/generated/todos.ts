@@ -25,6 +25,13 @@ const injectedRtkApi = api.injectEndpoints({
         method: "DELETE",
       }),
     }),
+    classifyTodo: build.mutation<ClassifyTodoApiResponse, ClassifyTodoApiArg>({
+      query: (queryArg) => ({
+        url: `/api/Todos/classify`,
+        method: "POST",
+        body: queryArg.classifyTodoRequest,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -44,9 +51,14 @@ export type DeleteTodoApiResponse = unknown;
 export type DeleteTodoApiArg = {
   id: number;
 };
+export type ClassifyTodoApiResponse = unknown;
+export type ClassifyTodoApiArg = {
+  classifyTodoRequest: ClassifyTodoRequest;
+};
 export type TodoItem = {
   id?: number;
   title?: string | null;
+  category?: string | null;
   isComplete?: boolean;
 };
 export type CreateTodoCommand = {
@@ -56,9 +68,13 @@ export type UpdateTodoCommandDto = {
   title?: string;
   isComplete?: boolean;
 };
+export type ClassifyTodoRequest = {
+  description?: string;
+};
 export const {
   useGetTodosQuery,
   useCreateTodoMutation,
   useUpdateTodoMutation,
   useDeleteTodoMutation,
+  useClassifyTodoMutation,
 } = injectedRtkApi;

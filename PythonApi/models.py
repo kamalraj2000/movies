@@ -1,17 +1,19 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, Literal
+from enum import Enum
 
 
-class TodoItem(BaseModel):
-    id: int
-    title: Optional[str] = None
-    isComplete: bool = False
+class TodoCategory(str, Enum):
+    WORK = "Work"
+    HOME = "Home"
+    OTHER = "Other"
 
 
-class CreateTodoCommand(BaseModel):
-    title: str
+class TodoClassificationRequest(BaseModel):
+    description: str
 
 
-class UpdateTodoCommand(BaseModel):
-    title: str
-    isComplete: bool
+class TodoClassificationResponse(BaseModel):
+    description: str
+    category: TodoCategory
+    confidence: float

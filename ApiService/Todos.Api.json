@@ -140,6 +140,39 @@
           }
         }
       }
+    },
+    "/api/Todos/classify": {
+      "post": {
+        "tags": [
+          "Todos"
+        ],
+        "operationId": "ClassifyTodo",
+        "requestBody": {
+          "x-name": "request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClassifyTodoRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -153,6 +186,10 @@
             "format": "int32"
           },
           "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
             "type": "string",
             "nullable": true
           },
@@ -179,6 +216,15 @@
           },
           "isComplete": {
             "type": "boolean"
+          }
+        }
+      },
+      "ClassifyTodoRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string"
           }
         }
       }

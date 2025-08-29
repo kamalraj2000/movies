@@ -11,18 +11,19 @@ var migrationService = builder.AddProject<Projects.MigrationService>("migrations
     .WithReference(sqlServer)
     .WaitFor(sqlServer);
 
-var apiService = builder.AddProject<Projects.ApiService>("apiservice")
-    .WithReference(sqlServer)
-    .WaitFor(sqlServer)
-    .WaitFor(migrationService)
-    .WithHttpHealthCheck("/health");
-
 // The Python API is experimental and subject to change
 #pragma warning disable ASPIREHOSTINGPYTHON001
 var pythonApi = builder.AddPythonApp("pythonapi","../PythonApi","run_app.py")
     .WithHttpEndpoint(port: 8000, env: "PORT")
     .WithExternalHttpEndpoints();
 #pragma warning restore ASPIREHOSTINGPYTHON001
+
+var apiService = builder.AddProject<Projects.ApiService>("apiservice")
+    .WithReference(pythonApi)
+    .WithReference(sqlServer)
+    .WaitFor(sqlServer)
+    .WaitFor(migrationService)
+    .WithHttpHealthCheck("/health");
 
 builder.AddNpmApp("web", "../web", "dev")
     .WithReference(apiService)

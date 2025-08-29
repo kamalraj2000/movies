@@ -12,7 +12,7 @@ public class GetTodosQueryHandler(TodoDbContext context) : IRequestHandler<GetTo
     public async Task<IEnumerable<TodoItem>> Handle(GetTodosQuery request, CancellationToken cancellationToken)
     {
         return await context.Todos
-            .Select(x => new TodoItem { Id = x.Id, Title = x.Title, IsComplete = x.IsComplete })
+            .Select(x => new TodoItem { Id = x.Id, Title = x.Title, Category = x.Category, IsComplete = x.IsComplete })
             .ToListAsync(cancellationToken);
     }
 }

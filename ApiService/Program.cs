@@ -1,4 +1,5 @@
 using System.Reflection;
+using ApiService.Python;
 using Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,12 +29,15 @@ builder.Services.AddOpenApiDocument(options =>
     options.Title = "Todos API";
     options.Version = "v1";
     options.UseHttpAttributeNameAsOperationId = true;
-    
+
     options.PostProcess = document =>
     {
         document.BasePath = "/";
     };
 });
+
+builder.Services.AddHttpClient<PythonClient>(
+    static client => client.BaseAddress = new("http://pythonapi"));
 
 var app = builder.Build();
 
